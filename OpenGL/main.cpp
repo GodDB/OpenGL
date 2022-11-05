@@ -28,11 +28,21 @@ int main() {
         return -1;
     }
     
-    // 삼각형 정점 데이터
-    float triangle_pos[6] = {
-        -0.5f, -0.5f,
-        0.0f, 0.5f,
-        0.5f, -0.5f
+    // 벡터의 외적이 바깥을 가르키는 것만 그린다.
+    glEnable(GL_CULL_FACE);
+    // 삼각형 정점 데이터 (3차원)
+    
+    // 이건 그려지지 않음. 이 면은 안을 가르키기 때문에 그려지지 않는다. (외적의 결과)
+    // float triangle_pos[9] = {
+    //     -0.5f, -0.5f, 0.0f,
+    //     0.0f, 0.5f, 0.0f,
+    //     0.5f, -0.5f, 0.0f
+    //  };
+    
+    float triangle_pos[9] = {
+        -0.5f, -0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+        0.0f, 0.5f, 0.0f
     };
         
     unsigned int bufferId; // 생성할 버퍼의 아이디
@@ -42,7 +52,7 @@ int main() {
     // 버퍼에 데이터 전달
     glBufferData(
                  GL_ARRAY_BUFFER, // array 형태로 전달할 것임을 명시,
-                 6 * sizeof(float), // 데이터의 크기 전달
+                 9 * sizeof(float), // 데이터의 크기 전달
                  triangle_pos, // 데이터 포인터 전달
                  GL_STATIC_DRAW // 데이터의 변경이 적을 것임을 명시 (렌더링 효율성 증가)
                  );
@@ -52,10 +62,10 @@ int main() {
     // 데이터 해석 방법 전달
     glVertexAttribPointer(
                           0, // 0번째 location의 attribute의 해석 방법
-                          2, // 각 데이터가 몇개 단위로 이루어져 있는지
+                          3, // 각 데이터가 몇개 단위로 이루어져 있는지
                           GL_FLOAT, // 데이터 타입
                           GL_FALSE, // 정규화가 필요한지
-                          sizeof(float) * 2, // 한 단위의 데이터를 읽을 때 마다, 얼마나 건너 뛰어야 하는지
+                          sizeof(float) * 3, // 한 단위의 데이터를 읽을 때 마다, 얼마나 건너 뛰어야 하는지
                           0 // 첫 데이터가 몇 바이트로부터 시작하는지
                           );
     
@@ -64,7 +74,7 @@ int main() {
         glClear(GL_COLOR_BUFFER_BIT); // 기존 렌더링된것들을 날린다.
         
         // vertex shader를 설정하지 않았는데도, 삼각형이 나옴!
-        // 이유는 GPU 드라이버에서 자동 설정이 되어있기 때문임. 
+        // 이유는 GPU 드라이버에서 자동 설정이 되어있기 때문임.
         glDrawArrays(
                      GL_TRIANGLES,
                      0,
