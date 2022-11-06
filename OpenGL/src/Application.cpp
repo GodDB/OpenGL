@@ -45,10 +45,18 @@ int main( void )
         return -1;
     }
 
+    // index buffer 방식으로 표현해보자!
     static const GLfloat g_vertex_buffer_data[] = {
         -0.5f, -0.5f, 0.0f,
-        0.0f,  0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f
+        0.5f, -0.5f, 0.0f,
+        0.5f, 0.5f, 0.0f,
+        -0.5f, 0.5f, 0.0f
+    };
+    
+    // 사각형을 그리려면 2개의 삼각형이 필요하고, 그에 대응되는 버텍스 어레이의 인덱스를 정의
+    unsigned int indices[] {
+        0, 1, 2,
+        2, 3, 0
     };
     
     // 데이터를 전달하는 과정
@@ -63,6 +71,17 @@ int main( void )
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer); // 2. 버퍼 액티브 상태로 전환
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW); // 버퍼에 데이터 전달
 
+    unsigned int ibo; // Index buffer object
+    glGenBuffers(1, &ibo); // 인덱스를 받을 버퍼 생성
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo); // 버퍼 엑티브 생태로 전환
+    glBufferData(
+                 GL_ELEMENT_ARRAY_BUFFER,
+                 sizeof(indices),
+                 indices,
+                 GL_STATIC_DRAW
+                 ); // 버퍼에 데이터 전달
+    
+    
     // 데이터를 해석하는 방법 전달
     //1. 0 번째 Location의 attribute를 활성화(enable)
     glEnableVertexAttribArray(0);
@@ -90,7 +109,14 @@ int main( void )
             /* Render here */
             glClear(GL_COLOR_BUFFER_BIT);
 
-            glDrawArrays(GL_TRIANGLES, 0, 3); //Draw call
+            // index 방식에선 이걸 사용하지 않는다.
+            //glDrawArrays(GL_TRIANGLES, 0, 3); //Draw call
+            glDrawElements(
+                           GL_TRIANGLES, // 그리고자 하는 것
+                           6, // 인덱스 갯수
+                           GL_UNSIGNED_INT, // 인덱스 데이터 타입
+                           nullptr // ㅑㄹ
+                           );
             
             /* Swap front and back buffers */
             glfwSwapBuffers(window);
