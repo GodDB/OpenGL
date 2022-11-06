@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		35E41430291634F7005F2194 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E4142F291634F7005F2194 /* main.cpp */; };
 		35E4143829163673005F2194 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E4143729163673005F2194 /* OpenGL.framework */; };
 		35E4143A29163B1D005F2194 /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E4143929163B1D005F2194 /* libGLEW.2.2.0.dylib */; };
 		35E4143C29163B36005F2194 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E4143B29163B36005F2194 /* libglfw.3.3.dylib */; };
+		35E4145829177164005F2194 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E4145629177164005F2194 /* Application.cpp */; };
+		35E4145D2917789E005F2194 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E4145B2917789E005F2194 /* shader.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,10 +28,14 @@
 
 /* Begin PBXFileReference section */
 		35E4142C291634F7005F2194 /* OpenGL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenGL; sourceTree = BUILT_PRODUCTS_DIR; };
-		35E4142F291634F7005F2194 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		35E4143729163673005F2194 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		35E4143929163B1D005F2194 /* libGLEW.2.2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.2.0.dylib; path = ../../../../opt/homebrew/Cellar/glew/2.2.0_1/lib/libGLEW.2.2.0.dylib; sourceTree = "<group>"; };
 		35E4143B29163B36005F2194 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../opt/homebrew/Cellar/glfw/3.3.8/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
+		35E4145629177164005F2194 /* Application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
+		35E4145B2917789E005F2194 /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
+		35E4145C2917789E005F2194 /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
+		35E4145E291778F5005F2194 /* SimpleFragmentShader.fragmentshader */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleFragmentShader.fragmentshader; sourceTree = "<group>"; };
+		35E4145F2917790D005F2194 /* SimpleVertexShader.vertexshader */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleVertexShader.vertexshader; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +72,8 @@
 		35E4142E291634F7005F2194 /* OpenGL */ = {
 			isa = PBXGroup;
 			children = (
-				35E4142F291634F7005F2194 /* main.cpp */,
+				35E4145429177119005F2194 /* src */,
+				35E41453291770FF005F2194 /* res */,
 			);
 			path = OpenGL;
 			sourceTree = "<group>";
@@ -80,6 +86,41 @@
 				35E4143729163673005F2194 /* OpenGL.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		35E41453291770FF005F2194 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				35E41459291771AF005F2194 /* shaders */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		35E4145429177119005F2194 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				35E4145A29177880005F2194 /* common */,
+				35E4145629177164005F2194 /* Application.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		35E41459291771AF005F2194 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				35E4145E291778F5005F2194 /* SimpleFragmentShader.fragmentshader */,
+				35E4145F2917790D005F2194 /* SimpleVertexShader.vertexshader */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
+		35E4145A29177880005F2194 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				35E4145B2917789E005F2194 /* shader.cpp */,
+				35E4145C2917789E005F2194 /* shader.hpp */,
+			);
+			path = common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +180,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35E41430291634F7005F2194 /* main.cpp in Sources */,
+				35E4145D2917789E005F2194 /* shader.cpp in Sources */,
+				35E4145829177164005F2194 /* Application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
