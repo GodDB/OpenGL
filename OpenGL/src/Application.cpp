@@ -46,9 +46,9 @@ int main( void )
     }
 
     static const GLfloat g_vertex_buffer_data[] = {
-        -1.0f, -1.0f, 0.0f,
-         1.0f, -1.0f, 0.0f,
-         0.0f,  1.0f, 0.0f,
+        -0.5f, -0.5f, 0.0f,
+        0.0f,  0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f
     };
     
     // 데이터를 전달하는 과정
@@ -63,26 +63,23 @@ int main( void )
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer); // 2. 버퍼 액티브 상태로 전환
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW); // 버퍼에 데이터 전달
 
-
-    // vertex, fragment shader 생성
-    GLuint programID = LoadShaders(
-                                   "res/shaders/SimpleVertexShader.vertexshader",
-                                   "res/shaders/SimpleFragmentShader.fragmentshader" );
-
-
-
-    // 버텍스 어레이 활성
+    // 데이터를 해석하는 방법 전달
+    //1. 0 번째 Location의 attribute를 활성화(enable)
     glEnableVertexAttribArray(0);
-    // 버텍스 버퍼 활성화
-    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+    //2. 데이터 해석 방법을 전달. 0 번째 location의 attribute의 데이터 해석 방법이다.
     glVertexAttribPointer(
-        0,                  // attribute 0. No particular reason for 0, but must match the layout in the shader.
+        0,                  // 0번째 location의 attribute에 대해
         3,                  // size
         GL_FLOAT,           // type
         GL_FALSE,           // normalized?
         0,                  // stride
         (void*)0            // array buffer offset
     );
+    
+    // vertex, fragment shader 생성
+    GLuint programID = LoadShaders(
+                                   "res/shaders/SimpleVertexShader.vertexshader",
+                                   "res/shaders/SimpleFragmentShader.fragmentshader" );
     
     // Use our shader
     glUseProgram(programID);
@@ -95,8 +92,6 @@ int main( void )
 
             glDrawArrays(GL_TRIANGLES, 0, 3); //Draw call
             
-            //이번에는 빨간색 삼각형이 나와야 함!
-
             /* Swap front and back buffers */
             glfwSwapBuffers(window);
 
