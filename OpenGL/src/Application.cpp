@@ -7,10 +7,12 @@
 
 // Include GLFW
 #include <GLFW/glfw3.h>
-#include "common/shader.hpp"
-#include "DataBuffer.hpp"
+#include "VertexBuffer.hpp"
 #include "IndexBuffer.hpp"
 #include "VertexArray.hpp"
+#include "Shader.hpp"
+#include "Texture.hpp"
+
 GLFWwindow* window;
 
 int main( void )
@@ -29,7 +31,7 @@ int main( void )
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Open a window and create its OpenGL context
-    window = glfwCreateWindow( 1024, 768, "Tutorial 02 - Red triangle", NULL, NULL);
+    window = glfwCreateWindow(1024, 768, "Tutorial 02 - Red triangle", NULL, NULL);
     if( window == NULL ){
         fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
         getchar();
@@ -49,10 +51,10 @@ int main( void )
 
 
     GLfloat g_vertex_buffer_data[] = {
-        -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // pos, color
-        0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f,
-        0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
-        -0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f
+        -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // pos, color, texture
+        0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+        0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+        -0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f,
     };
     
     // 사각형을 그리려면 2개의 삼각형이 필요하고, 그에 대응되는 버텍스 어레이의 인덱스를 정의
@@ -61,22 +63,27 @@ int main( void )
         2, 3, 0
     };
     
+    //알파 채널 처리 방법 (chapter 10에서 다룰 예정)
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
     // 데이터를 전달하는 과정
     // 1. vertex array 생성
     VertexArray vertaxArr;
     
     // 2. vertex buffer 생성
-    DataBuffer dataBuffer { g_vertex_buffer_data, sizeof(g_vertex_buffer_data) };
+    VertexBuffer dataBuffer { g_vertex_buffer_data, sizeof(g_vertex_buffer_data) };
 
     IndexBuffer indexBuffer { indices, sizeof(indices) };
     
+    unsigned int spride = sizeof(float) * 8;
     // 데이터를 해석하는 방법 전달
     vertaxArr.defineAttribute(
                               0,
                               3,
                               GL_FLOAT,
                               GL_FALSE,
-                              sizeof(float) * 6,
+                              spride,
                               (void*)0
                               );
 
@@ -85,25 +92,32 @@ int main( void )
                               3,
                               GL_FLOAT,
                               GL_FALSE,
-                              sizeof(float) * 6,
+                              spride,
                               (void*) (sizeof(float) * 3)
+                              );
+    
+    vertaxArr.defineAttribute(
+                              2,
+                              2,
+                              GL_FLOAT,
+                              GL_FALSE,
+                              spride,
+                              (void*) (sizeof(float) * 6)
                               );
     
     
     // vertex, fragment shader 생성
-    GLuint programID = LoadShaders(
-                                   "res/shaders/SimpleVertexShader.vertexshader",
-                                   "res/shaders/SimpleFragmentShader.fragmentshader" );
+    Shader shader {
+        "res/shaders/SimpleVertexShader.vertexshader",
+        "res/shaders/SimpleFragmentShader.fragmentshader"};
+    shader.Bind();
     
-    // Use our shader
-    glUseProgram(programID);
+    //--------------Texture 생성---------//
+        Texture texture{ "res/textures/JBNU.png" };
+        texture.Bind(); //0번 슬롯에 바인딩
+        shader.SetUniform1i("u_Texture", 0); //0번 슬롯의 텍스처를 사용할 것이라는 것을 셰이더에 명시
     
-    // fragment shader에 정의된 u_Color 포인터를 가져온다
-    GLuint uColorPtr = glGetUniformLocation(programID, "u_Color");
-    // u_Color라는 유니폼 변수에 값을 세팅한다.
-    glUniform4f(uColorPtr, 0.3f, 0.3f, 0.8f, 1.0f);
     
-    glBindVertexArray(0);
     /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
         {
@@ -111,6 +125,7 @@ int main( void )
             glClear(GL_COLOR_BUFFER_BIT);
 
             vertaxArr.activate(); // 버텍스 어레이 액티브 상태로 전환
+            
             glDrawElements(
                            GL_TRIANGLES, // 그리고자 하는 것
                            6, // 인덱스 갯수
@@ -124,10 +139,6 @@ int main( void )
             /* Poll for and process events */
             glfwPollEvents();
         }
-
-    // Cleanup VBO
-
-    glDeleteProgram(programID);
 
     // Close OpenGL window and terminate GLFW
     glfwTerminate();

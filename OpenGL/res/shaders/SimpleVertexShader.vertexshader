@@ -1,4 +1,4 @@
-#version 330 core
+#version 330
 
 // location 0번째로 지정된 vertex position 정보
 layout(location = 0) in vec4 position;
@@ -6,8 +6,12 @@ layout(location = 0) in vec4 position;
 // location 1번째로 지정된 color 정보
 layout(location = 1) in vec3 color;
 
+// location 2번째로 지정된 texture 정보
+layout(location = 2) in vec2 texCoord;
+
 // fragment shader에게 전달할 output
 out vec3 v_Color;
+out vec2 v_TexCoord;
 
 void main(){
 
@@ -15,5 +19,6 @@ void main(){
     gl_Position = position;
     
     v_Color = color; // fragment shader로 값을 넘긴다.
+    v_TexCoord = texCoord;
 
 }

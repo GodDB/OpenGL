@@ -20,6 +20,8 @@ private :
 public :
     IndexBuffer(unsigned int *arr, int size);
     ~IndexBuffer();
+    void bind();
+    void unbind();
 };
 
 #endif /* IndexBuffer_hpp */

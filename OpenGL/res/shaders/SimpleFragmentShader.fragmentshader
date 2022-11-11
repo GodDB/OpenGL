@@ -1,17 +1,21 @@
-#version 330 core
+#version 330 
 
 // vertex shader에서 넘어온 컬러값
 in vec3 v_Color;
+in vec2 v_TexCoord; //버텍스 셰이더에서 넘겨받은 데이터
 
 // Ouput data
 out vec4 color;
 
 uniform vec4 u_Color;
+uniform sampler2D u_Texture; //texture는 sampler2D 타입
 
 void main()
 {
     // 외부에서 지정한 u_Color값으로 세팅한다.
     //color = u_Color;
+    //color = vec4(v_Color, 1.0f);
     
-    color = vec4(v_Color, 1.0f);
+    vec4 texColor = texture(u_Texture, v_TexCoord); //texture 함수는 texcoord위치의 픽셀 색상 값을 정의된 방법에 따라 샘플링
+    color = texColor;
 }
