@@ -1,12 +1,12 @@
 #version 330 core
 
 // location 0번째로 지정된 vertex position 정보
-layout(location = 0) in vec3 vertexPosition_modelspace;
+layout(location = 0) in vec4 position;
+
 
 void main(){
 
     // gl_Position은 최종적으로 clip space의 값이 지정되어야 함.
-    gl_Position.xyz = vertexPosition_modelspace;
-    gl_Position.w = 1.0;
+    gl_Position = position;
 
 }
