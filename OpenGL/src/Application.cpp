@@ -12,6 +12,8 @@
 #include "VertexArray.hpp"
 #include "Shader.hpp"
 #include "Texture.hpp"
+#include "glm.hpp"
+#include "transform.hpp"
 
 GLFWwindow* window;
 
