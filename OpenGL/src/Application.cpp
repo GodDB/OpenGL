@@ -103,14 +103,19 @@ int main( void )
     // Use our shader
     glUseProgram(programID);
     
+    // fragment shader에 정의된 u_Color 포인터를 가져온다
+    GLuint uColorPtr = glGetUniformLocation(programID, "u_Color");
+    // u_Color라는 유니폼 변수에 값을 세팅한다.
+    glUniform4f(uColorPtr, 0.3f, 0.3f, 0.8f, 1.0f);
+    
+    glBindVertexArray(0);
     /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
         {
             /* Render here */
             glClear(GL_COLOR_BUFFER_BIT);
 
-            // index 방식에선 이걸 사용하지 않는다.
-            //glDrawArrays(GL_TRIANGLES, 0, 3); //Draw call
+            glBindVertexArray(VertexArrayID); // 버텍스 어레이 액티브 상태로 전환
             glDrawElements(
                            GL_TRIANGLES, // 그리고자 하는 것
                            6, // 인덱스 갯수

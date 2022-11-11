@@ -1,12 +1,12 @@
 #version 330 core
 
 // Ouput data
-out vec3 color;
+out vec4 color;
+
+uniform vec4 u_Color;
 
 void main()
 {
-
-    // Output color = red
-    color = vec3(1,0,0);
-
+    // 외부에서 지정한 u_Color값으로 세팅한다.
+    color = u_Color;
 }
