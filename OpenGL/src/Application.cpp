@@ -90,7 +90,7 @@ int main( void )
         3,                  // size
         GL_FLOAT,           // type
         GL_FALSE,           // normalized?
-        0,                  // stride
+        sizeof(float) * 3,  // stride
         (void*)0            // array buffer offset
     );
     

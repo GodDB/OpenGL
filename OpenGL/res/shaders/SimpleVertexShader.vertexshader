@@ -3,6 +3,8 @@
 // location 0번째로 지정된 vertex position 정보
 layout(location = 0) in vec4 position;
 
+// location 1번째로 지정된 normal vector 정보
+layout(location = 1) in vec3 nor_vector;
 
 void main(){
 
