@@ -8,6 +8,9 @@
 // Include GLFW
 #include <GLFW/glfw3.h>
 #include "common/shader.hpp"
+#include "DataBuffer.hpp"
+#include "IndexBuffer.hpp"
+#include "VertexArray.hpp"
 GLFWwindow* window;
 
 int main( void )
@@ -45,7 +48,7 @@ int main( void )
     }
 
 
-    static const GLfloat g_vertex_buffer_data[] = {
+    GLfloat g_vertex_buffer_data[] = {
         -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // pos, color
         0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f,
         0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
@@ -60,49 +63,32 @@ int main( void )
     
     // 데이터를 전달하는 과정
     // 1. vertex array 생성
-    GLuint VertexArrayID;
-    glGenVertexArrays(1, &VertexArrayID); // 1. 버텍스 어레이 생성 생성
-    glBindVertexArray(VertexArrayID); // 버텍스 어레이 액티브 상태로 전환
+    VertexArray vertaxArr;
     
     // 2. vertex buffer 생성
-    GLuint vertexbuffer;
-    glGenBuffers(1, &vertexbuffer); // 1. 버퍼 생성
-    glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer); // 2. 버퍼 액티브 상태로 전환
-    glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW); // 버퍼에 데이터 전달
+    DataBuffer dataBuffer { g_vertex_buffer_data, 6 * 4 };
 
-    unsigned int ibo; // Index buffer object
-    glGenBuffers(1, &ibo); // 인덱스를 받을 버퍼 생성
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo); // 버퍼 엑티브 생태로 전환
-    glBufferData(
-                 GL_ELEMENT_ARRAY_BUFFER,
-                 sizeof(indices),
-                 indices,
-                 GL_STATIC_DRAW
-                 ); // 버퍼에 데이터 전달
-    
+    IndexBuffer indexBuffer { indices, 3 * 2 };
     
     // 데이터를 해석하는 방법 전달
-    //1. 0 번째 Location의 attribute를 활성화(enable)
-    glEnableVertexAttribArray(0);
-    //2. 데이터 해석 방법을 전달. 0 번째 location의 attribute의 데이터 해석 방법이다.
-    glVertexAttribPointer(
-        0,                  // 0번째 location의 attribute에 대해
-        3,                  // size
-        GL_FLOAT,           // type
-        GL_FALSE,           // normalized?
-        sizeof(float) * 6,  // stride
-        (void*)0            // array buffer offset
-    );
+    vertaxArr.defineAttribute(
+                              0,
+                              3,
+                              GL_FLOAT,
+                              GL_FALSE,
+                              sizeof(float) * 6,
+                              (void*)0
+                              );
+
+    vertaxArr.defineAttribute(
+                              1,
+                              3,
+                              GL_FLOAT,
+                              GL_FALSE,
+                              sizeof(float) * 6,
+                              (void*) (sizeof(float) * 3)
+                              );
     
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(
-                          1,
-                          3,
-                          GL_FLOAT,
-                          GL_FALSE,
-                          sizeof(float) * 6,
-                          (void*) (sizeof(float) * 3)
-                          );
     
     // vertex, fragment shader 생성
     GLuint programID = LoadShaders(
@@ -124,7 +110,7 @@ int main( void )
             /* Render here */
             glClear(GL_COLOR_BUFFER_BIT);
 
-            glBindVertexArray(VertexArrayID); // 버텍스 어레이 액티브 상태로 전환
+            vertaxArr.activate(); // 버텍스 어레이 액티브 상태로 전환
             glDrawElements(
                            GL_TRIANGLES, // 그리고자 하는 것
                            6, // 인덱스 갯수
@@ -140,8 +126,7 @@ int main( void )
         }
 
     // Cleanup VBO
-    glDeleteBuffers(1, &vertexbuffer);
-    glDeleteVertexArrays(1, &VertexArrayID);
+
     glDeleteProgram(programID);
 
     // Close OpenGL window and terminate GLFW
