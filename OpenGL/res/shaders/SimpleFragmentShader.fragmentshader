@@ -1,5 +1,8 @@
 #version 330 core
 
+// vertex shader에서 넘어온 컬러값
+in vec3 v_Color;
+
 // Ouput data
 out vec4 color;
 
@@ -8,5 +11,7 @@ uniform vec4 u_Color;
 void main()
 {
     // 외부에서 지정한 u_Color값으로 세팅한다.
-    color = u_Color;
+    //color = u_Color;
+    
+    color = vec4(v_Color, 1.0f);
 }

@@ -46,10 +46,10 @@ int main( void )
 
 
     static const GLfloat g_vertex_buffer_data[] = {
-        -0.5f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,
-        0.5f, 0.5f, 0.0f,
-        -0.5f, 0.5f, 0.0f
+        -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // pos, color
+        0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f,
+        0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+        -0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f
     };
     
     // 사각형을 그리려면 2개의 삼각형이 필요하고, 그에 대응되는 버텍스 어레이의 인덱스를 정의
@@ -90,9 +90,19 @@ int main( void )
         3,                  // size
         GL_FLOAT,           // type
         GL_FALSE,           // normalized?
-        sizeof(float) * 3,  // stride
+        sizeof(float) * 6,  // stride
         (void*)0            // array buffer offset
     );
+    
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(
+                          1,
+                          3,
+                          GL_FLOAT,
+                          GL_FALSE,
+                          sizeof(float) * 6,
+                          (void*) (sizeof(float) * 3)
+                          );
     
     // vertex, fragment shader 생성
     GLuint programID = LoadShaders(

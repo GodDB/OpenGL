@@ -3,12 +3,17 @@
 // location 0번째로 지정된 vertex position 정보
 layout(location = 0) in vec4 position;
 
-// location 1번째로 지정된 normal vector 정보
-layout(location = 1) in vec3 nor_vector;
+// location 1번째로 지정된 color 정보
+layout(location = 1) in vec3 color;
+
+// fragment shader에게 전달할 output
+out vec3 v_Color;
 
 void main(){
 
     // gl_Position은 최종적으로 clip space의 값이 지정되어야 함.
     gl_Position = position;
+    
+    v_Color = color; // fragment shader로 값을 넘긴다.
 
 }
