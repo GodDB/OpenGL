@@ -12,6 +12,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+
 class DataBuffer {
 public :
     DataBuffer(GLfloat *data, int size);

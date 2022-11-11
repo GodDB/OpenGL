@@ -13,7 +13,7 @@ IndexBuffer::IndexBuffer(unsigned int *arr, int size) {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, bufferId); // 버퍼 엑티브 생태로 전환
     glBufferData(
                  GL_ELEMENT_ARRAY_BUFFER,
-                 sizeof(unsigned int) * size,
+                 size,
                  arr,
                  GL_STATIC_DRAW
                  ); // 버퍼에 데이터 전달

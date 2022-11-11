@@ -66,9 +66,9 @@ int main( void )
     VertexArray vertaxArr;
     
     // 2. vertex buffer 생성
-    DataBuffer dataBuffer { g_vertex_buffer_data, 6 * 4 };
+    DataBuffer dataBuffer { g_vertex_buffer_data, sizeof(g_vertex_buffer_data) };
 
-    IndexBuffer indexBuffer { indices, 3 * 2 };
+    IndexBuffer indexBuffer { indices, sizeof(indices) };
     
     // 데이터를 해석하는 방법 전달
     vertaxArr.defineAttribute(
