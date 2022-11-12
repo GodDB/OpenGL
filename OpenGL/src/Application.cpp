@@ -14,6 +14,7 @@
 #include "Texture.hpp"
 #include "glm.hpp"
 #include "transform.hpp"
+#include "TransformUtil.hpp"
 
 GLFWwindow* window;
 
@@ -27,6 +28,7 @@ int main( void )
         return -1;
     }
 
+    
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed

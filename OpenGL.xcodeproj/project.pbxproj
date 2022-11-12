@@ -18,6 +18,7 @@
 		35ECD53F291E7F2A00B1925C /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD53D291E7F2A00B1925C /* Shader.cpp */; };
 		35ECD542291E831E00B1925C /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD540291E831E00B1925C /* Texture.cpp */; };
 		35ECD550291E859F00B1925C /* stb_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD54F291E859F00B1925C /* stb_image.cpp */; };
+		35ECD659291F63DD00B1925C /* TransformUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD657291F63DD00B1925C /* TransformUtil.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -310,6 +311,8 @@
 		35ECD652291E8C2A00B1925C /* rotate_normalized_axis.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = rotate_normalized_axis.hpp; sourceTree = "<group>"; };
 		35ECD653291E8C2A00B1925C /* projection.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = projection.inl; sourceTree = "<group>"; };
 		35ECD654291E8C2A00B1925C /* type_aligned.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = type_aligned.hpp; sourceTree = "<group>"; };
+		35ECD657291F63DD00B1925C /* TransformUtil.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TransformUtil.cpp; sourceTree = "<group>"; };
+		35ECD658291F63DD00B1925C /* TransformUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TransformUtil.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -405,6 +408,8 @@
 				35ECD53E291E7F2A00B1925C /* Shader.hpp */,
 				35ECD540291E831E00B1925C /* Texture.cpp */,
 				35ECD541291E831E00B1925C /* Texture.hpp */,
+				35ECD657291F63DD00B1925C /* TransformUtil.cpp */,
+				35ECD658291F63DD00B1925C /* TransformUtil.hpp */,
 			);
 			path = gl_util;
 			sourceTree = "<group>";
@@ -795,6 +800,7 @@
 				35ECD53F291E7F2A00B1925C /* Shader.cpp in Sources */,
 				35ECD532291E6DAD00B1925C /* VertexArray.cpp in Sources */,
 				35ECD52F291E674500B1925C /* VertexBuffer.cpp in Sources */,
+				35ECD659291F63DD00B1925C /* TransformUtil.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
