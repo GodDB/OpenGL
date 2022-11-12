@@ -36,10 +36,10 @@ int main( void )
     }
 
     GLfloat g_vertex_buffer_data[] = {
-        -0.5f, -0.5f, -5.0f,
-        0.5f, -0.5f, -5.0f,
-        0.5f, 0.5f, -5.0f,
-        -0.5f, 0.5f, -5.0f
+        -0.5f, -0.5f, -1.0f,
+        0.5f, -0.5f, -1.0f,
+        0.5f, 0.5f, -1.0f,
+        -0.5f, 0.5f, -1.0f
     };
     
     // 사각형을 그리려면 2개의 삼각형이 필요하고, 그에 대응되는 버텍스 어레이의 인덱스를 정의
@@ -76,7 +76,7 @@ int main( void )
     
     //yaw 값이 0일때는 front가 [1,0,0]이므로, yaw를 90으로 해서 초기 front가 [0,0,-1]이 되도록 함
     Camera camera{
-        glm::vec3{0.0f,0.0f,5.0f},
+        glm::vec3{0.0f,0.0f,1.0f},
         glm::vec3{0.0f,1.0f,0.0f},
         -90.0f,
         0.0f,
@@ -86,12 +86,13 @@ int main( void )
 
     // 가라
     glm::mat4 model = getTranslationTransform(0.0f, 0.0f, 0.0f);
-    glm::mat4 proj = getProjectionTransform(
-                                            glm::radians(90.0f),
-                                            window.GetBufferWidth() / window.GetBufferHeight(),
-                                            1.0f,
-                                            100.0f
-                                            );
+    
+    glm::mat4 proj = glm::perspective(
+                                      45.0f,
+                                      (float)(window.GetBufferWidth() / window.GetBufferHeight()),
+                                      0.0f,
+                                      100.0f);
+                                           
   
     /* Loop until the user closes the window */
     //매 프레임마다 소요되는 시간을 계산/저장 하기 위한 변수
@@ -116,8 +117,8 @@ int main( void )
             vertaxArr.activate(); // 버텍스 어레이 액티브 상태로 전환
             shader.Bind();
             shader.SetUniformMat4f("transform_model", model);
-            shader.SetUniformMat4f("transform_proj", proj);
             shader.SetUniformMat4f("transform_view", camera.calculateViewMatrix());
+            shader.SetUniformMat4f("transform_proj", proj);
             
             glDrawElements(
                            GL_TRIANGLES, // 그리고자 하는 것

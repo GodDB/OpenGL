@@ -27,7 +27,7 @@ Camera::Camera(
     
     this->m_Eye = initEye;
     this->m_Front = glm::vec3 { 0.0f, 0.0f, -1.0f };
-    this->m_WorldUp = initUp;
+    this->m_Up = initUp;
     this->m_Pitch = initPitch;
     this->m_Yaw = initYaw;
     this->m_MoveSpeed = initMoveSpeed;
@@ -67,6 +67,10 @@ void Camera::KeyControl(bool * keys, float deltaTime)
     {
         m_Eye -= m_Right * velocity;
     }
+    
+    std::cout << "m_Front - " << "x : " << m_Front.x << ", y : " << m_Front.y << ", z : " << m_Front.z << std::endl;
+    std::cout << "m_Right - " << "x : " << m_Right.x << ", y : " << m_Right.y << ", z : " << m_Right.z << std::endl;
+    std::cout << "m_Up - " << "x : " << m_Up.x << ", y : " << m_Up.y << ", z : " << m_Up.z << std::endl;
 
 }
 
@@ -94,8 +98,9 @@ glm::mat4 Camera::calculateViewMatrix()
 {
     glm::mat4 view = glm::lookAt(m_Eye, m_Eye + m_Front, m_Up);
     //std::cout << glm::to_string(view) << std::endl;
-    return glm::lookAt(m_Eye, m_Eye + m_Front, m_Up); //At = Eye + Front
+    return view; //At = Eye + Front
 }
+
 
 void Camera::Update()
 {
@@ -105,6 +110,12 @@ void Camera::Update()
     m_Front.z = sin(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
     m_Front = glm::normalize(m_Front);
 
-    m_Right = glm::normalize(glm::cross(m_Front, m_WorldUp));
+    m_Right = glm::normalize(glm::cross(m_Front, m_Up));
     m_Up = glm::normalize(glm::cross(m_Right, m_Front));
+    
+    std::cout << "m_Front - " << "x : " << m_Front.x << ", y : " << m_Front.y << ", z : " << m_Front.z << std::endl;
+    std::cout << "m_Right - " << "x : " << m_Right.x << ", y : " << m_Right.y << ", z : " << m_Right.z << std::endl;
+    std::cout << "m_Up - " << "x : " << m_Up.x << ", y : " << m_Up.y << ", z : " << m_Up.z << std::endl;
 }
+ 
+

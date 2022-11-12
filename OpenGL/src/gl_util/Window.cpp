@@ -117,13 +117,13 @@ void Window::HandleKeys(GLFWwindow * window, int key, int code, int action, int 
         {
             //특정 키가 눌렸으면, m_Keys 배열의 해당 키에 해당하는 값을 true로 설정
             windowObject->m_Keys[key] = true;
-            std::cout << "Pressed : " << key << std::endl;
+            //std::cout << "Pressed : " << key << std::endl;
         }
         else if (action == GLFW_RELEASE)
         {
             //특정 키가 떼졌으면, m_Keys 배열의 해당 키에 해당하는 값을 false로 설정
             windowObject->m_Keys[key] = false;
-            std::cout << "Release : " << key << std::endl;
+           // std::cout << "Release : " << key << std::endl;
         }
     }
 }
@@ -151,8 +151,8 @@ void Window::HandleMouse(GLFWwindow * window, double xPos, double yPos)
         windowObject->m_LastX = xPos;
         windowObject->m_LastY = yPos;
 
-        std::cout << "XChange : " << windowObject->m_XChange <<
-            " YChange : " << windowObject->m_YChange << std::endl;
+        //std::cout << "XChange : " << windowObject->m_XChange <<
+           // " YChange : " << windowObject->m_YChange << std::endl;
     }
 
 }

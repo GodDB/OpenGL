@@ -25,8 +25,7 @@ public:
            float initYaw,
            float initPitch,
            float initMoveSpeed,
-           float initTurnSpeed
-           );
+           float initTurnSpeed);
     ~Camera();
 
     void KeyControl(bool *keys, float deltaTime);
@@ -38,7 +37,6 @@ private:
     glm::vec3 m_Front;
     glm::vec3 m_Up;
     glm::vec3 m_Right;
-    glm::vec3 m_WorldUp;
     float m_Yaw;
     float m_Pitch;
     float m_MoveSpeed;
