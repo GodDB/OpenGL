@@ -19,6 +19,7 @@
 		35ECD542291E831E00B1925C /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD540291E831E00B1925C /* Texture.cpp */; };
 		35ECD550291E859F00B1925C /* stb_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD54F291E859F00B1925C /* stb_image.cpp */; };
 		35ECD65C291FBB6500B1925C /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD65A291FBB6500B1925C /* Window.cpp */; };
+		35ECD65F291FC48500B1925C /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD65D291FC48500B1925C /* Camera.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -314,6 +315,8 @@
 		35ECD658291F63DD00B1925C /* TransformUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TransformUtil.hpp; sourceTree = "<group>"; };
 		35ECD65A291FBB6500B1925C /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
 		35ECD65B291FBB6500B1925C /* Window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Window.hpp; sourceTree = "<group>"; };
+		35ECD65D291FC48500B1925C /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		35ECD65E291FC48500B1925C /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -412,6 +415,8 @@
 				35ECD658291F63DD00B1925C /* TransformUtil.hpp */,
 				35ECD65A291FBB6500B1925C /* Window.cpp */,
 				35ECD65B291FBB6500B1925C /* Window.hpp */,
+				35ECD65D291FC48500B1925C /* Camera.cpp */,
+				35ECD65E291FC48500B1925C /* Camera.hpp */,
 			);
 			path = gl_util;
 			sourceTree = "<group>";
@@ -796,6 +801,7 @@
 			files = (
 				35ECD539291E7DB900B1925C /* Renderer.cpp in Sources */,
 				35ECD550291E859F00B1925C /* stb_image.cpp in Sources */,
+				35ECD65F291FC48500B1925C /* Camera.cpp in Sources */,
 				35ECD542291E831E00B1925C /* Texture.cpp in Sources */,
 				35E4145829177164005F2194 /* Application.cpp in Sources */,
 				35ECD65C291FBB6500B1925C /* Window.cpp in Sources */,
