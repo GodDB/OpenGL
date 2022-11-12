@@ -92,6 +92,9 @@ int main( void )
     Shader shader {
         "res/shaders/SimpleVertexShader.vertexshader",
         "res/shaders/SimpleFragmentShader.fragmentshader"};
+    
+    glm::mat4 mat = getTranslationTransform(0.5f, 0.0f, 0.0f);
+    
   
     /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
@@ -101,6 +104,7 @@ int main( void )
 
             vertaxArr.activate(); // 버텍스 어레이 액티브 상태로 전환
             shader.Bind();
+            shader.SetUniformMat4f("tramsform_model", mat);
             
             glDrawElements(
                            GL_TRIANGLES, // 그리고자 하는 것

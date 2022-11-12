@@ -115,6 +115,15 @@ void Shader::SetUniform1i(const std::string& name, int value)
     glUniform1i(GetUniformLocation(name), value);
 }
 
+void Shader::SetUniformMat4f(const std::string& name, const glm::mat4& mat) {
+    glUniformMatrix4fv(
+                 GetUniformLocation(name),
+                 1, //전달할 행렬 갯수
+                 GL_FALSE,
+                 &mat[0][0] // 배열 첫번째 포인터 전달
+                 );
+}
+
 int Shader::GetUniformLocation(const std::string& name)
 {
     //반복해서 uniform을 찾지 않고 map에 저장해둠

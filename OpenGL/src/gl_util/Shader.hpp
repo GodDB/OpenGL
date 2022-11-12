@@ -15,6 +15,7 @@
 #include <sstream>
 #include <unordered_map>
 #include "Renderer.hpp"
+#include "glm.hpp"
 
 
 struct ShaderProgramSource
@@ -40,6 +41,7 @@ public:
     void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
     void SetUniform1f(const std::string& name, float value);
     void SetUniform1i(const std::string& name, int value); //shader slot을 명시하
+    void SetUniformMat4f(const std::string& name, const glm::mat4& mat);
 private:
     ShaderProgramSource ParseShader(const std::string& vertexShader, const std::string& fragmentShader);
     unsigned int CompileShader(unsigned int type, const std::string& source);
