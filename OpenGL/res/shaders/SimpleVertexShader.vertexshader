@@ -1,6 +1,7 @@
 #version 330
 
-uniform mat4 tramsform_model;
+uniform mat4 transform_model;
+uniform mat4 transform_proj;
 
 // location 0번째로 지정된 vertex position 정보
 layout(location = 0) in vec4 position;
@@ -8,6 +9,6 @@ layout(location = 0) in vec4 position;
 void main(){
 
     // gl_Position은 최종적으로 clip space의 값이 지정되어야 함.
-    gl_Position = tramsform_model * position;
+    gl_Position = transform_proj * transform_model * position;
     
 }

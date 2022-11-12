@@ -27,8 +27,8 @@ static glm::mat4 getRotationXTransform(double rotateX) {
    
    glm::mat4 R = {
        1.0f, 0.0f, 0.0f, 0.0f,
-       0.0f, cos(x_radians), -sin(x_radians), 0.0f,
-       0.0f, sin(x_radians), cos(x_radians), 0.0f,
+       0.0f, glm::cos(x_radians), -glm::sin(x_radians), 0.0f,
+       0.0f, glm::sin(x_radians), glm::cos(x_radians), 0.0f,
        0.0f, 0.0f, 0.0f, 1.0f
    };
    return glm::transpose(R);
@@ -38,9 +38,9 @@ static glm::mat4 getRotationYTransform(double rotateY) {
    double y_radians = glm::radians(rotateY);
    
    glm::mat4 R = {
-      cos(y_radians), 0.0f, sin(y_radians), 0.0f,
+       glm::cos(y_radians), 0.0f, glm::sin(y_radians), 0.0f,
        0.0f, 1.0f, 0.0f, 0.0f,
-       -sin(y_radians), 0.0f, cos(y_radians), 0.0f,
+       -glm::sin(y_radians), 0.0f, glm::cos(y_radians), 0.0f,
        0.0f, 0.0f, 0.0f, 1.0f
    };
    return glm::transpose(R);
@@ -50,8 +50,8 @@ static glm::mat4 getRotationZTransform(double rotateZ) {
    double z_radians = glm::radians(rotateZ);
    
    glm::mat4 R = {
-       cos(z_radians), -sin(z_radians), 0.0f, 0.0f,
-       sin(z_radians), cos(z_radians), 0.0f, 0.0f,
+       glm::cos(z_radians), -glm::sin(z_radians), 0.0f, 0.0f,
+       glm::sin(z_radians), glm::cos(z_radians), 0.0f, 0.0f,
        0.0f, 0.0f, 1.0f, 0.0f,
        0.0f, 0.0f, 0.0f, 1.0f
    };
@@ -69,6 +69,18 @@ static glm::mat4 getTranslationTransform(float t_x, float t_y, float t_z) {
     };
     
     return glm::transpose(T);
+}
+
+static glm::mat4 getProjectionTransform(float fovy, float aspect, float near, float far) {
+    
+    glm::mat4 P = {
+        1/glm::tan(fovy/2), 0.0f, 0.0f, 0.0f,
+        0.0f, 1/glm::tan(fovy/2), 0.0f, 0.0f,
+        0.0f, 0.0f, -(far+near) / (far-near), -(2 * near * far) / (far - near),
+        0.0f, 0.0f, -1.0f, 0.0f
+    };
+    
+    return glm::transpose(P);
 }
 
 #endif /* TransformUtil_hpp */

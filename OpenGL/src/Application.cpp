@@ -1,6 +1,8 @@
 // Include standard headers
 #include <stdio.h>
 #include <stdlib.h>
+#include <chrono>
+#include <thread>
 
 // Include GLEW
 #include <GL/glew.h>
@@ -55,10 +57,10 @@ int main( void )
 
 
     GLfloat g_vertex_buffer_data[] = {
-        -0.5f, -0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,
-        0.5f, 0.5f, 0.0f,
-        -0.5f, 0.5f, 0.0f
+        -0.5f, -0.5f, -5.0f,
+        0.5f, -0.5f, -5.0f,
+        0.5f, 0.5f, -5.0f,
+        -0.5f, 0.5f, -5.0f
     };
     
     // 사각형을 그리려면 2개의 삼각형이 필요하고, 그에 대응되는 버텍스 어레이의 인덱스를 정의
@@ -93,10 +95,18 @@ int main( void )
         "res/shaders/SimpleVertexShader.vertexshader",
         "res/shaders/SimpleFragmentShader.fragmentshader"};
     
-    glm::mat4 mat = getTranslationTransform(0.5f, 0.0f, 0.0f);
+    //glm::mat4 mat = getTranslationTransform(0.0f, 0.0f, 0.0f);
+    //glm::mat4 mat = getScaleTransform(1.15f, 1.15f,1.15f);
     
+    glm::mat4 proj = getProjectionTransform(
+                                            glm::radians(120.0f),
+                                            1024/768,
+                                            1.0f,
+                                            100.0f
+                                            );
   
     /* Loop until the user closes the window */
+    float degree = 0.0f;
         while (!glfwWindowShouldClose(window))
         {
             /* Render here */
@@ -104,7 +114,9 @@ int main( void )
 
             vertaxArr.activate(); // 버텍스 어레이 액티브 상태로 전환
             shader.Bind();
-            shader.SetUniformMat4f("tramsform_model", mat);
+            glm::mat4 mat = getRotationZTransform(degree);
+            shader.SetUniformMat4f("transform_model", mat);
+            shader.SetUniformMat4f("transform_proj", proj);
             
             glDrawElements(
                            GL_TRIANGLES, // 그리고자 하는 것
@@ -118,6 +130,9 @@ int main( void )
 
             /* Poll for and process events */
             glfwPollEvents();
+            
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            degree++;
         }
 
     // Close OpenGL window and terminate GLFW
