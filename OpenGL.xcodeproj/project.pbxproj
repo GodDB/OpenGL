@@ -18,6 +18,7 @@
 		35ECD53F291E7F2A00B1925C /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD53D291E7F2A00B1925C /* Shader.cpp */; };
 		35ECD542291E831E00B1925C /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD540291E831E00B1925C /* Texture.cpp */; };
 		35ECD550291E859F00B1925C /* stb_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD54F291E859F00B1925C /* stb_image.cpp */; };
+		35ECD65C291FBB6500B1925C /* Window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD65A291FBB6500B1925C /* Window.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -311,6 +312,8 @@
 		35ECD653291E8C2A00B1925C /* projection.inl */ = {isa = PBXFileReference; lastKnownFileType = text; path = projection.inl; sourceTree = "<group>"; };
 		35ECD654291E8C2A00B1925C /* type_aligned.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = type_aligned.hpp; sourceTree = "<group>"; };
 		35ECD658291F63DD00B1925C /* TransformUtil.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TransformUtil.hpp; sourceTree = "<group>"; };
+		35ECD65A291FBB6500B1925C /* Window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Window.cpp; sourceTree = "<group>"; };
+		35ECD65B291FBB6500B1925C /* Window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Window.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -407,6 +410,8 @@
 				35ECD540291E831E00B1925C /* Texture.cpp */,
 				35ECD541291E831E00B1925C /* Texture.hpp */,
 				35ECD658291F63DD00B1925C /* TransformUtil.hpp */,
+				35ECD65A291FBB6500B1925C /* Window.cpp */,
+				35ECD65B291FBB6500B1925C /* Window.hpp */,
 			);
 			path = gl_util;
 			sourceTree = "<group>";
@@ -793,6 +798,7 @@
 				35ECD550291E859F00B1925C /* stb_image.cpp in Sources */,
 				35ECD542291E831E00B1925C /* Texture.cpp in Sources */,
 				35E4145829177164005F2194 /* Application.cpp in Sources */,
+				35ECD65C291FBB6500B1925C /* Window.cpp in Sources */,
 				35ECD52C291E673600B1925C /* IndexBuffer.cpp in Sources */,
 				35ECD53F291E7F2A00B1925C /* Shader.cpp in Sources */,
 				35ECD532291E6DAD00B1925C /* VertexArray.cpp in Sources */,
