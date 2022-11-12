@@ -53,10 +53,10 @@ int main( void )
 
 
     GLfloat g_vertex_buffer_data[] = {
-        -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // pos, color, texture
-        0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f,
-        0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
-        -0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+        -0.5f, -0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+        0.5f, 0.5f, 0.0f,
+        -0.5f, 0.5f, 0.0f
     };
     
     // 사각형을 그리려면 2개의 삼각형이 필요하고, 그에 대응되는 버텍스 어레이의 인덱스를 정의
@@ -65,9 +65,6 @@ int main( void )
         2, 3, 0
     };
     
-    //알파 채널 처리 방법 (chapter 10에서 다룰 예정)
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     // 데이터를 전달하는 과정
     // 1. vertex array 생성
@@ -78,7 +75,7 @@ int main( void )
 
     IndexBuffer indexBuffer { indices, sizeof(indices) };
     
-    unsigned int spride = sizeof(float) * 8;
+    unsigned int spride = sizeof(float) * 3;
     // 데이터를 해석하는 방법 전달
     vertaxArr.defineAttribute(
                               0,
@@ -89,37 +86,11 @@ int main( void )
                               (void*)0
                               );
 
-    vertaxArr.defineAttribute(
-                              1,
-                              3,
-                              GL_FLOAT,
-                              GL_FALSE,
-                              spride,
-                              (void*) (sizeof(float) * 3)
-                              );
-    
-    vertaxArr.defineAttribute(
-                              2,
-                              2,
-                              GL_FLOAT,
-                              GL_FALSE,
-                              spride,
-                              (void*) (sizeof(float) * 6)
-                              );
-    
-    
     // vertex, fragment shader 생성
     Shader shader {
         "res/shaders/SimpleVertexShader.vertexshader",
         "res/shaders/SimpleFragmentShader.fragmentshader"};
-    shader.Bind();
-    
-    //--------------Texture 생성---------//
-        Texture texture{ "res/textures/JBNU.png" };
-        texture.Bind(); //0번 슬롯에 바인딩
-        shader.SetUniform1i("u_Texture", 0); //0번 슬롯의 텍스처를 사용할 것이라는 것을 셰이더에 명시
-    
-    
+  
     /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
         {
@@ -127,6 +98,7 @@ int main( void )
             glClear(GL_COLOR_BUFFER_BIT);
 
             vertaxArr.activate(); // 버텍스 어레이 액티브 상태로 전환
+            shader.Bind();
             
             glDrawElements(
                            GL_TRIANGLES, // 그리고자 하는 것
