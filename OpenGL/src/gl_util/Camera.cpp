@@ -69,9 +69,9 @@ void Camera::KeyControl(bool * keys, float deltaTime)
         m_Eye -= m_Right * velocity;
     }
     
-    std::cout << "m_Front - " << "x : " << m_Front.x << ", y : " << m_Front.y << ", z : " << m_Front.z << std::endl;
-    std::cout << "m_Right - " << "x : " << m_Right.x << ", y : " << m_Right.y << ", z : " << m_Right.z << std::endl;
-    std::cout << "m_Up - " << "x : " << m_Up.x << ", y : " << m_Up.y << ", z : " << m_Up.z << std::endl;
+    //std::cout << "m_Front - " << "x : " << m_Front.x << ", y : " << m_Front.y << ", z : " << m_Front.z << std::endl;
+    //std::cout << "m_Right - " << "x : " << m_Right.x << ", y : " << m_Right.y << ", z : " << m_Right.z << std::endl;
+    //std::cout << "m_Up - " << "x : " << m_Up.x << ", y : " << m_Up.y << ", z : " << m_Up.z << std::endl;
 
 }
 
@@ -115,8 +115,8 @@ void Camera::Update()
     m_Right = normalize(glm::cross(m_Front, m_Up));
     m_Up = normalize(glm::cross(m_Right, m_Front));
     
-    std::cout << "m_Front - " << "x : " << m_Front.x << ", y : " << m_Front.y << ", z : " << m_Front.z << std::endl;
-    std::cout << "m_Right - " << "x : " << m_Right.x << ", y : " << m_Right.y << ", z : " << m_Right.z << std::endl;
-    std::cout << "m_Up - " << "x : " << m_Up.x << ", y : " << m_Up.y << ", z : " << m_Up.z << std::endl;
+    //std::cout << "m_Front - " << "x : " << m_Front.x << ", y : " << m_Front.y << ", z : " << m_Front.z << std::endl;
+   // std::cout << "m_Right - " << "x : " << m_Right.x << ", y : " << m_Right.y << ", z : " << m_Right.z << std::endl;
+    //std::cout << "m_Up - " << "x : " << m_Up.x << ", y : " << m_Up.y << ", z : " << m_Up.z << std::endl;
 }
  

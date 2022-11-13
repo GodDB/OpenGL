@@ -14,9 +14,8 @@
 #include <string>
 #include <sstream>
 #include <unordered_map>
-#include "Renderer.hpp"
 #include "glm.hpp"
-
+#include <GL/glew.h>
 
 struct ShaderProgramSource
 {

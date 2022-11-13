@@ -10,18 +10,22 @@
 
 #include <stdio.h>
 #include <GL/glew.h>
-#include <GLFW/glfw3.h>
 
 class IndexBuffer {
   
 private :
     GLuint bufferId;
+    unsigned int count;
     
 public :
-    IndexBuffer(unsigned int *arr, int size);
+    IndexBuffer(unsigned int *arr, unsigned int count);
     ~IndexBuffer();
-    void bind();
-    void unbind();
+    void Bind() const;
+    void Unbind() const;
+    
+    inline unsigned int GetCount() const {
+        return count;
+    }
 };
 
 #endif /* IndexBuffer_hpp */

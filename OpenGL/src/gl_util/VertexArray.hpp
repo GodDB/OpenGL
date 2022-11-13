@@ -11,6 +11,9 @@
 #include <stdio.h>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "VertexBufferLayout.hpp"
+#include "VertexBufferElement.hpp"
+#include "VertexBuffer.hpp"
 
 class VertexArray {
     
@@ -20,8 +23,10 @@ private :
 public :
     VertexArray();
     ~VertexArray();
-    void activate();
-    void defineAttribute(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer);
+    void Bind() const;
+    void Unbind() const;
+    
+    void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
 };
 
 #endif /* VertexArray_hpp */

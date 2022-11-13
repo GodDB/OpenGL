@@ -30,6 +30,8 @@ ShaderProgramSource Shader::ParseShader(const std::string& vertexShader, const s
         sstr << VertexShaderStream.rdbuf();
         VertexShaderCode = sstr.str();
         VertexShaderStream.close();
+    } else {
+        std::cout << "버텍스 쉐이더 파일 못 읽음" << std::endl;
     }
 
     // Read the Fragment Shader code from the file

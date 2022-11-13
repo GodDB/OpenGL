@@ -8,10 +8,10 @@
 #include "VertexBuffer.hpp"
 
 
-VertexBuffer::VertexBuffer(GLfloat *data, int size) {
+VertexBuffer::VertexBuffer(const void *data, unsigned long size) {
     // 2. vertex buffer 생성
     glGenBuffers(1, &bufferId); // 1. 버퍼 생성
-    bind(); // 2. 버퍼 액티브 상태로 전환
+    Bind(); // 2. 버퍼 액티브 상태로 전환
     glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW); // 버퍼에 데이터 전달
 
 }
@@ -21,10 +21,10 @@ VertexBuffer::~VertexBuffer() {
 }
 
 
-void VertexBuffer::bind() {
+void VertexBuffer::Bind() const{
     glBindBuffer(GL_ARRAY_BUFFER, bufferId);
 }
-void VertexBuffer::unbind() {
+void VertexBuffer::Unbind() const {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 

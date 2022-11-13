@@ -4,12 +4,17 @@ uniform mat4 transform_model;
 uniform mat4 transform_proj;
 uniform mat4 transform_view;
 
-// location 0번째로 지정된 vertex position 정보
-layout(location = 0) in vec4 position;
+layout(location = 0) in vec3 position;
+layout(location = 1) in vec2 texCoord;
+layout(location = 2) in vec3 normal;
+
+out vec2 v_TexCoord; //버텍스 셰이더에서 추가적으로 출력하는 데이터(varying)
+out vec3 v_Normal;
 
 void main(){
 
     // gl_Position은 최종적으로 clip space의 값이 지정되어야 함.
-    gl_Position = transform_proj * transform_view * transform_model * position;
-    
+    gl_Position = transform_proj * transform_view * transform_model * vec4(position, 1.0f);
+    v_TexCoord = texCoord; //vertex 변환에 따라 바뀌지 않으므로 그대로 넘겨주면 됨
+    v_Normal = normal;
 }

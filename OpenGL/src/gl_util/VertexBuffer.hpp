@@ -15,10 +15,10 @@
 
 class VertexBuffer {
 public :
-    VertexBuffer(GLfloat *data, int size);
+    VertexBuffer(const void *data, unsigned long size);
     ~VertexBuffer();
-    void bind();
-    void unbind();
+    void Bind() const;
+    void Unbind() const;
     
 private:
     GLuint bufferId;
