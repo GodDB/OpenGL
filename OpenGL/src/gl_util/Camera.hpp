@@ -43,5 +43,6 @@ private:
     float m_TurnSpeed;
 
     void Update();
+    
 };
 #endif /* Camera_hpp */

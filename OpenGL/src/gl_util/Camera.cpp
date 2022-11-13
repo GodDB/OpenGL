@@ -10,6 +10,7 @@
 #include <GLFW/glfw3.h>
 #include "string_cast.hpp"
 #include <iostream>
+#include "TransformUtil.hpp"
 
 Camera::Camera()
 {
@@ -96,7 +97,8 @@ void Camera::MouseControl(float xChange, float yChange)
 
 glm::mat4 Camera::calculateViewMatrix()
 {
-    glm::mat4 view = glm::lookAt(m_Eye, m_Eye + m_Front, m_Up);
+    //glm::mat4 view = glm::lookAt(m_Eye, m_Eye + m_Front, m_Up);
+    glm::mat4 view = getViewTransform(m_Eye, m_Eye + m_Front, m_Up);
     //std::cout << glm::to_string(view) << std::endl;
     return view; //At = Eye + Front
 }
@@ -108,14 +110,13 @@ void Camera::Update()
     m_Front.x = cos(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
     m_Front.y = sin(glm::radians(m_Pitch));
     m_Front.z = sin(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
-    m_Front = glm::normalize(m_Front);
+    m_Front = normalize(m_Front);
 
-    m_Right = glm::normalize(glm::cross(m_Front, m_Up));
-    m_Up = glm::normalize(glm::cross(m_Right, m_Front));
+    m_Right = normalize(glm::cross(m_Front, m_Up));
+    m_Up = normalize(glm::cross(m_Right, m_Front));
     
     std::cout << "m_Front - " << "x : " << m_Front.x << ", y : " << m_Front.y << ", z : " << m_Front.z << std::endl;
     std::cout << "m_Right - " << "x : " << m_Right.x << ", y : " << m_Right.y << ", z : " << m_Right.z << std::endl;
     std::cout << "m_Up - " << "x : " << m_Up.x << ", y : " << m_Up.y << ", z : " << m_Up.z << std::endl;
 }
  
-

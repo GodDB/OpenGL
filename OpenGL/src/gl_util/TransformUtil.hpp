@@ -83,4 +83,31 @@ static glm::mat4 getProjectionTransform(float fovy, float aspect, float near, fl
     return glm::transpose(P);
 }
 
+static float getDistance(glm::vec3 vec) {
+    float base = (vec.x * vec.x) + (vec.y * vec.y) + (vec.z * vec.z);
+    return std::sqrt(base);
+}
+
+static glm::vec3 normalize(glm::vec3 vec) {
+    float distance = getDistance(vec);
+    return vec / distance;
+}
+
+static glm::mat4 getViewTransform(glm::vec3 eye, glm::vec3 at, glm::vec3 up) {
+    glm::vec3 vector_n = (eye - at) / getDistance(eye - at);
+    glm::vec3 vector_u = glm::cross(up, vector_n) / getDistance(glm::cross(up, vector_n));
+    glm::vec3 vector_v = glm::cross(vector_n, vector_u);
+
+    glm::mat4 T = getTranslationTransform(-eye.x, -eye.y, -eye.z);
+    glm::mat4 _R = glm::mat4 {
+        vector_u.x, vector_u.y, vector_u.z, 0.0f,
+        vector_v.x, vector_v.y, vector_v.z, 0.0f,
+        vector_n.x, vector_n.y, vector_n.z, 0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f
+    };
+    glm::mat4 R = glm::transpose(_R);
+    return R * T;
+}
+
+
 #endif /* TransformUtil_hpp */
