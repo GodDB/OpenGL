@@ -40,12 +40,12 @@ int main( void )
  
     // -- model import
     Model model;
-    model.loadModel("/Users/beom.93/Downloads/OpenGL_Lecture_Material-c3c704f8c5509bdeca1a159352337b6d57baf8fb/OpenGL/OpenGL/res/models/teapot.obj");
+    model.loadModel("/Users/beom.93/Downloads/OpenGL_Lecture_Material-c3c704f8c5509bdeca1a159352337b6d57baf8fb 2/OpenGL/OpenGL/res/models/teapot.obj");
     
     // -- 카메라 생성
     //yaw 값이 0일때는 front가 [1,0,0]이므로, yaw를 90으로 해서 초기 front가 [0,0,-1]이 되도록 함
     Camera camera{
-        glm::vec3{0.0f,0.0f,15.0f},
+        glm::vec3{0.0f,0.0f,30.0f},
         glm::vec3{0.0f,1.0f,0.0f},
         -90.0f,
         0.0f,

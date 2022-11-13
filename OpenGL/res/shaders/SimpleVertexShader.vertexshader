@@ -16,5 +16,6 @@ void main(){
     // gl_Position은 최종적으로 clip space의 값이 지정되어야 함.
     gl_Position = transform_proj * transform_view * transform_model * vec4(position, 1.0f);
     v_TexCoord = texCoord; //vertex 변환에 따라 바뀌지 않으므로 그대로 넘겨주면 됨
-    v_Normal = normal;
+    // 이건 잘 모르겠음;;; 왜 world transform만 연산해줘야 하며, 왜 그걸 역행렬로 만들고 트랜스포즈 해야하는지;;; 설명을 안해주네 
+    v_Normal = normalize(transpose(inverse(mat3(transform_model))) * normal);
 }

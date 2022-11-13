@@ -46,8 +46,8 @@
 		35E4145F2917790D005F2194 /* SimpleVertexShader.vertexshader */ = {isa = PBXFileReference; lastKnownFileType = text; path = SimpleVertexShader.vertexshader; sourceTree = "<group>"; };
 		35EA50EF292097B600E51F27 /* VertexBufferLayout.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexBufferLayout.hpp; sourceTree = "<group>"; };
 		35EA50F229209DBE00E51F27 /* VertexBufferElement.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexBufferElement.hpp; sourceTree = "<group>"; };
-		35EA50F52920A82500E51F27 /* teapot.obj */ = {isa = PBXFileReference; lastKnownFileType = text; path = teapot.obj; sourceTree = "<group>"; };
 		35EA50F62920A82F00E51F27 /* uvchecker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = uvchecker.jpg; path = "../../../../../../Downloads/OpenGL_Lecture_Material-c3c704f8c5509bdeca1a159352337b6d57baf8fb/OpenGL/OpenGL/res/textures/uvchecker.jpg"; sourceTree = "<group>"; };
+		35EA51082920C6F400E51F27 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = teapot.obj; path = "../../../../../OpenGL_Lecture_Material-c3c704f8c5509bdeca1a159352337b6d57baf8fb 2/OpenGL/OpenGL/res/models/teapot.obj"; sourceTree = "<group>"; };
 		35ECD52A291E673600B1925C /* IndexBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IndexBuffer.cpp; sourceTree = "<group>"; };
 		35ECD52B291E673600B1925C /* IndexBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IndexBuffer.hpp; sourceTree = "<group>"; };
 		35ECD52D291E674500B1925C /* VertexBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VertexBuffer.cpp; sourceTree = "<group>"; };
@@ -412,7 +412,7 @@
 		35EA50F42920A82500E51F27 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				35EA50F52920A82500E51F27 /* teapot.obj */,
+				35EA51082920C6F400E51F27 /* teapot.obj */,
 			);
 			name = models;
 			path = "../../../../../Downloads/OpenGL_Lecture_Material-c3c704f8c5509bdeca1a159352337b6d57baf8fb/OpenGL/OpenGL/res/models";
