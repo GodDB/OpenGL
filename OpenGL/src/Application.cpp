@@ -75,7 +75,8 @@ int main( void )
     shader.SetUniformMat4f("transform_proj", t_proj);
     
     Light light {
-        glm::vec3 { 0.1f, 0.1f, 0.1f }
+        glm::vec3 { 0.2f, 0.2f, 0.2f },
+        glm::vec3 {2.0f,-1.0f, -2.0f }
     };
     light.Initialize(shader);
                  

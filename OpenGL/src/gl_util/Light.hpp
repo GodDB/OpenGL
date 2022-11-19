@@ -19,10 +19,14 @@ public:
     {
         
     }
-    Light(glm::vec3 color);
+    Light(
+          glm::vec3 ambienceColor,
+          glm::vec3 diffuseDirection
+          );
     void Initialize(Shader shader);
 private:
     glm::vec3 color;
+    glm::vec3 diffuseDirection;
 };
 
 #endif /* Light_hpp */
