@@ -21,6 +21,7 @@
 #include "Camera.hpp"
 #include "Model.hpp"
 #include "Renderer.hpp"
+#include "Light.hpp"
 
 // homebrew에서 받은 외부 라이브러리 저장 방법 
 
@@ -52,8 +53,7 @@ int main( void )
         5.0f,
         0.5f
     };
-    
-    
+        
     // -- transform 정의
     // 가라
     glm::mat4 t_model = getTranslationTransform(0.0f, 0.0f, 0.0f);
@@ -73,6 +73,11 @@ int main( void )
     shader.SetUniformMat4f("transform_model", t_model);
     shader.SetUniformMat4f("transform_view", camera.calculateViewMatrix());
     shader.SetUniformMat4f("transform_proj", t_proj);
+    
+    Light light {
+        glm::vec3 { 0.1f, 0.1f, 0.1f }
+    };
+    light.Initialize(shader);
                  
     //--------------Texture 생성---------//
     Texture texture{ "/Users/beom.93/Downloads/OpenGL_Lecture_Material-c3c704f8c5509bdeca1a159352337b6d57baf8fb/OpenGL/OpenGL/res/textures/uvchecker.jpg" };

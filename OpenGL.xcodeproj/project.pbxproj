@@ -11,6 +11,7 @@
 		35E4143A29163B1D005F2194 /* libGLEW.2.2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E4143929163B1D005F2194 /* libGLEW.2.2.0.dylib */; };
 		35E4143C29163B36005F2194 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E4143B29163B36005F2194 /* libglfw.3.3.dylib */; };
 		35E4145829177164005F2194 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35E4145629177164005F2194 /* Application.cpp */; };
+		35EA510B2928CB5E00E51F27 /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35EA51092928CB5E00E51F27 /* Light.cpp */; };
 		35ECD52C291E673600B1925C /* IndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD52A291E673600B1925C /* IndexBuffer.cpp */; };
 		35ECD52F291E674500B1925C /* VertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD52D291E674500B1925C /* VertexBuffer.cpp */; };
 		35ECD532291E6DAD00B1925C /* VertexArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35ECD530291E6DAD00B1925C /* VertexArray.cpp */; };
@@ -48,6 +49,8 @@
 		35EA50F229209DBE00E51F27 /* VertexBufferElement.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VertexBufferElement.hpp; sourceTree = "<group>"; };
 		35EA50F62920A82F00E51F27 /* uvchecker.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = uvchecker.jpg; path = "../../../../../../Downloads/OpenGL_Lecture_Material-c3c704f8c5509bdeca1a159352337b6d57baf8fb/OpenGL/OpenGL/res/textures/uvchecker.jpg"; sourceTree = "<group>"; };
 		35EA51082920C6F400E51F27 /* teapot.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = teapot.obj; path = "../../../../../OpenGL_Lecture_Material-c3c704f8c5509bdeca1a159352337b6d57baf8fb 2/OpenGL/OpenGL/res/models/teapot.obj"; sourceTree = "<group>"; };
+		35EA51092928CB5E00E51F27 /* Light.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cpp; sourceTree = "<group>"; };
+		35EA510A2928CB5E00E51F27 /* Light.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Light.hpp; sourceTree = "<group>"; };
 		35ECD52A291E673600B1925C /* IndexBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IndexBuffer.cpp; sourceTree = "<group>"; };
 		35ECD52B291E673600B1925C /* IndexBuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IndexBuffer.hpp; sourceTree = "<group>"; };
 		35ECD52D291E674500B1925C /* VertexBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VertexBuffer.cpp; sourceTree = "<group>"; };
@@ -442,6 +445,8 @@
 				35ECD6D42920911000B1925C /* Model.hpp */,
 				35EA50EF292097B600E51F27 /* VertexBufferLayout.hpp */,
 				35EA50F229209DBE00E51F27 /* VertexBufferElement.hpp */,
+				35EA51092928CB5E00E51F27 /* Light.cpp */,
+				35EA510A2928CB5E00E51F27 /* Light.hpp */,
 			);
 			path = gl_util;
 			sourceTree = "<group>";
@@ -831,6 +836,7 @@
 				35ECD542291E831E00B1925C /* Texture.cpp in Sources */,
 				35E4145829177164005F2194 /* Application.cpp in Sources */,
 				35ECD65C291FBB6500B1925C /* Window.cpp in Sources */,
+				35EA510B2928CB5E00E51F27 /* Light.cpp in Sources */,
 				35ECD6D52920911000B1925C /* Model.cpp in Sources */,
 				35ECD52C291E673600B1925C /* IndexBuffer.cpp in Sources */,
 				35ECD53F291E7F2A00B1925C /* Shader.cpp in Sources */,
