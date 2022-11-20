@@ -46,7 +46,7 @@ int main( void )
     // -- 카메라 생성
     //yaw 값이 0일때는 front가 [1,0,0]이므로, yaw를 90으로 해서 초기 front가 [0,0,-1]이 되도록 함
     Camera camera{
-        glm::vec3{0.0f,0.0f,-30.0f},
+        glm::vec3{0.0f,0.0f,30.0f},
         glm::vec3{0.0f,1.0f,0.0f},
         -90.0f,
         0.0f,
