@@ -80,18 +80,18 @@ void Camera::MouseControl(float xChange, float yChange)
     //xChange,yChange에는 Window.m_XChange, Window.m_YChange가 전달됨
 {
     //마우스를 1픽셀만큼 움직였을 때 얼마나 각도를 변경할 것인가가 m_TurnSpeed 파라메터
-    xChange *= m_TurnSpeed;
-    yChange *= m_TurnSpeed;
+    //xChange *= m_TurnSpeed;
+    //yChange *= m_TurnSpeed;
 
-    m_Yaw += xChange;
-    m_Pitch += yChange;
+    //m_Yaw += xChange;
+    //m_Pitch += yChange;
 
     //y방향으로 많이 움직였을 시 고개를 넘기지 못하도록 각도 제한을 둠
-    if (m_Pitch > 89.0f)
-        m_Pitch = 89.0f;
+    //if (m_Pitch > 89.0f)
+    //    m_Pitch = 89.0f;
 
-    if (m_Pitch < -89.0f)
-        m_Pitch = -89.0f;
+    //if (m_Pitch < -89.0f)
+    //    m_Pitch = -89.0f;
 
     Update();
 }
