@@ -27,13 +27,14 @@ Camera::Camera(
 {
     
     this->m_Eye = initEye;
-    this->m_Front = glm::vec3 { 0.0f, 0.0f, -1.0f };
+    this->m_Front = glm::vec3 { 0.0f, 0.0f, 1.0f };
     this->m_Up = initUp;
+    this->m_WorldUp = initUp;
     this->m_Pitch = initPitch;
     this->m_Yaw = initYaw;
     this->m_MoveSpeed = initMoveSpeed;
     this->m_TurnSpeed = initTurnSpeed;
-    Update();
+    //Update();
 }
  
 
@@ -97,23 +98,28 @@ void Camera::MouseControl(float xChange, float yChange)
 
 glm::mat4 Camera::calculateViewMatrix()
 {
-    //glm::mat4 view = glm::lookAt(m_Eye, m_Eye + m_Front, m_Up);
-    glm::mat4 view = getViewTransform(m_Eye, m_Eye + m_Front, m_Up);
+    glm::mat4 view = glm::lookAt(m_Eye, m_Eye + m_Front, m_Up);
+    //glm::mat4 view = getViewTransform(m_Eye, m_Eye + m_Front, m_Up);
     //std::cout << glm::to_string(view) << std::endl;
     return view; //At = Eye + Front
+}
+
+glm::vec3 Camera::GetEye()
+{
+    return m_Eye;
 }
 
 
 void Camera::Update()
 {
     //마우스 입력에 따른 Front 벡터의 변화 계산 (구면 좌표 -> 카르테시안 좌표)
-    m_Front.x = cos(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
-    m_Front.y = sin(glm::radians(m_Pitch));
-    m_Front.z = sin(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
-    m_Front = normalize(m_Front);
+    //m_Front.x = cos(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
+    //m_Front.y = sin(glm::radians(m_Pitch));
+    //m_Front.z = sin(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
+    //m_Front = glm::normalize(m_Front);
 
-    m_Right = normalize(glm::cross(m_Front, m_Up));
-    m_Up = normalize(glm::cross(m_Right, m_Front));
+    //m_Right = glm::normalize(glm::cross(m_Front, m_WorldUp));
+    //m_Up = glm::normalize(glm::cross(m_Right, m_Front));
     
     //std::cout << "m_Front - " << "x : " << m_Front.x << ", y : " << m_Front.y << ", z : " << m_Front.z << std::endl;
    // std::cout << "m_Right - " << "x : " << m_Right.x << ", y : " << m_Right.y << ", z : " << m_Right.z << std::endl;

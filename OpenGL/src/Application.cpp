@@ -46,7 +46,7 @@ int main( void )
     // -- 카메라 생성
     //yaw 값이 0일때는 front가 [1,0,0]이므로, yaw를 90으로 해서 초기 front가 [0,0,-1]이 되도록 함
     Camera camera{
-        glm::vec3{0.0f,0.0f,30.0f},
+        glm::vec3{0.0f,0.0f,-30.0f},
         glm::vec3{0.0f,1.0f,0.0f},
         -90.0f,
         0.0f,
@@ -75,8 +75,8 @@ int main( void )
     shader.SetUniformMat4f("transform_proj", t_proj);
     
     Light light {
-        glm::vec3 { 0.2f, 0.2f, 0.2f },
-        glm::vec3 {2.0f,-1.0f, -2.0f }
+        glm::vec3 { 0.3f, 0.3f, 0.3f },
+        glm::vec3 { 0.7f, -0.3f, -0.7f }
     };
     light.Initialize(shader);
                  
@@ -110,7 +110,8 @@ int main( void )
         shader.SetUniformMat4f("transform_model", t_model);
         shader.SetUniformMat4f("transform_view", camera.calculateViewMatrix());
         shader.SetUniformMat4f("transform_proj", t_proj);
-            
+        glm::vec3 camera_eye = camera.GetEye();
+        shader.SetUniform3f("u_camera_pos", camera_eye.x, camera_eye.y, camera_eye.z);
         model.RenderModel(shader);
             
         /* Swap front and back buffers */

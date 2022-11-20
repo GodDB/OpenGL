@@ -14,6 +14,7 @@ out vec2 v_TexCoord; //버텍스 셰이더에서 추가적으로 출력하는 �
 out vec3 v_Normal;
 out vec3 v_ambient_color;
 out vec3 v_diffuse_direction;
+out vec3 v_world_pos;
 
 void main(){
 
@@ -28,4 +29,5 @@ void main(){
     
     v_ambient_color = normalize(ambient_color);
     v_diffuse_direction = normalize(diffuse_direction);
+    v_world_pos = (transform_model * vec4(position, 1.0f)).xyz;
 }

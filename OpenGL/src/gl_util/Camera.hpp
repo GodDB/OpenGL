@@ -30,13 +30,15 @@ public:
 
     void KeyControl(bool *keys, float deltaTime);
     void MouseControl(float xChange, float yChange);
-
+    
+    glm::vec3 GetEye();
     glm::mat4 calculateViewMatrix();
 private:
     glm::vec3 m_Eye;
     glm::vec3 m_Front;
     glm::vec3 m_Up;
     glm::vec3 m_Right;
+    glm::vec3 m_WorldUp;
     float m_Yaw;
     float m_Pitch;
     float m_MoveSpeed;
