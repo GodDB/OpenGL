@@ -52,17 +52,58 @@ static std::vector<unsigned int> initModel()
     std::vector<unsigned int> vaos;
     for(int i = 0; i < 10; i++)
     {
-    
+        
         float vertices[] = {
-            // positions          // colors           // 텍스처 인덱스
-             0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-             0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-            -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-            -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
+            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+            0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+            
+            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+            -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            
+            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            
+            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+            0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            
+            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
         };
         
         unsigned int indices[] = {  // note that we start from 0!
-            1, 2, 3  // second triangle
+            0 ,1, 2, 3, 4, 5, 6,
+            7, 8, 9, 10, 11, 12,
+            13, 14, 15, 16, 17, 18,
+            19, 20, 21, 22, 23, 24,
+            25, 26, 27, 28, 29, 30,
+            31, 32, 33, 34, 35  // second triangle
         };
         
         unsigned int VBO, VAO, EBO;
@@ -72,7 +113,7 @@ static std::vector<unsigned int> initModel()
         glGenBuffers(1, &VBO);
         // ebo(index buffer) 생성
         glGenBuffers(1, &EBO);
-
+        
         // vao 버퍼 바인드
         glBindVertexArray(VAO);
         
@@ -85,16 +126,12 @@ static std::vector<unsigned int> initModel()
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
         
         // 데이터를 어떻게 해석할 것인가? (position)
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(0 * sizeof(float)));
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(0 * sizeof(float)));
         glEnableVertexAttribArray(0);
         
-        // 데이터를 어떻게 해석할 것인가? (color)
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(3 * sizeof(float)));
-        glEnableVertexAttribArray(1);
-        
         // 데이터를 어떻게 해석할 것인가? (텍스처 인덱스)
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(6 * sizeof(float)));
-        glEnableVertexAttribArray(2);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
+        glEnableVertexAttribArray(1);
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
@@ -116,7 +153,7 @@ void processInput(GLFWwindow *window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-
+    
     float cameraSpeed = static_cast<float>(2.5 * deltaTime);
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         cameraPos += cameraFront * cameraSpeed;
@@ -132,11 +169,15 @@ void processInput(GLFWwindow *window)
 int main()
 {
     GLFWwindow* window = initializeWindow();
+   
+    glEnable(GL_DEPTH_TEST);
+
     initGLEW();
     
     Shader shader { "./res/shader/VertexShader.shader", "./res/shader/FragmentShader.shader" };
     shader.Bind();
     
+    //depth test(chapter 10, z-buffering)
     // 텍스처 mipmap 정의 - 텍스처 인덱스가 넘어갔을 때 텍스처를 어떻게 표현할 것인가? - 반복처리
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);    // set texture wrapping to GL_REPEAT (default wrapping method)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -166,7 +207,7 @@ int main()
     std::vector<unsigned> vaos = initModel();
     // 초기화 후 바로 제거함. 드로우할 때 활성화 할것임.
     glBindTexture(GL_TEXTURE_2D, 0);
-   
+    
     
     
     while(!glfwWindowShouldClose(window))
@@ -174,23 +215,25 @@ int main()
         float currentFrame = static_cast<float>(glfwGetTime());
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
-    
+        
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
         processInput(window);
-        glClear(GL_COLOR_BUFFER_BIT);
         shader.Bind();
         glBindTexture(GL_TEXTURE_2D, TEXTURE);
         glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
         shader.SetUniformMat4f("view_transform_mat", view);
         
-        glm::mat4 perspective = glm::perspective(glm::radians(45.0f), 800.0f/600.0f, 0.0f, 100.0f);
+        glm::mat4 perspective = glm::perspective(glm::radians(45.0f), 800.0f/600.0f, 0.1f, 100.0f);
         shader.SetUniformMat4f("perspective_transform_mat", perspective);
         for(int i = 0; i<vaos.size(); i++)
         {
             glBindVertexArray(vaos[i]);
-            glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(i, 0.0f, 0.0f));
+            glm::mat4 transform = glm::translate(glm::mat4(1.0f), glm::vec3(i * 1.5, 0.0f, 0.0f));
             shader.SetUniformMat4f("world_tramsform_mat", transform);
-    
-            glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
+            
+            //glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
         }
         glfwSwapBuffers(window);
         glfwPollEvents();
